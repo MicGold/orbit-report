@@ -9,6 +9,7 @@ import { Satellite } from './satellite';
 export class AppComponent {
   title = 'orbit-report';
   sourceList: Satellite[];
+  displayList: Satellite[];
 
   constructor() {
   //   this.sourceList = [
@@ -19,6 +20,7 @@ export class AppComponent {
   //     new Satellite("ISS", "Space Station", "1998-11-20", "LOW", true),
   //  ];
     this.sourceList = [];
+    this.displayList = [];
     let satellitesUrl = 'https://handlers.education.launchcode.org/static/satellites.json';
 
     window.fetch(satellitesUrl).then(function(response) {
@@ -29,8 +31,23 @@ export class AppComponent {
          for(let i = 0; i < fetchedSatellites.length; i++){
            addedSat = new Satellite(fetchedSatellites[i].name, fetchedSatellites[i].type, fetchedSatellites[i].launchDate, fetchedSatellites[i].orbitType, fetchedSatellites[i].operational);
           this.sourceList.push(addedSat);
+          this.displayList = this.sourceList.slice(0);
          }
         }.bind(this));
     }.bind(this)); 
+  }
+
+  search(searchTerm: string): void {
+    let matchingSatellites: Satellite[] = [];
+    searchTerm = searchTerm.toLowerCase();
+    for(let i=0; i < this.sourceList.length; i++) {
+      let name = this.sourceList[i].name.toLowerCase();
+      let type = this.sourceList[i].type.toLowerCase();
+      let orbitType = this.sourceList[i].orbitType.toLowerCase();
+      if (name.indexOf(searchTerm) >= 0 || type.indexOf(searchTerm) >= 0 || orbitType.indexOf(searchTerm) >= 0) {
+        matchingSatellites.push(this.sourceList[i]);
+      }
+    }
+    this.displayList = matchingSatellites;
   }
 }

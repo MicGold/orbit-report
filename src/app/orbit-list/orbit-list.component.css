@@ -1,14 +1,16 @@
 .sortable {
     cursor: pointer;
-    color: rgb(221, 207, 85);
+    color: rgb(211, 184, 64);
 }
 
 .warning {
-    background-color: #df8484;
+    background-color: #d63737;
+    color: rgb(114, 20, 20);
+    font-weight: bolder;
 }
 
 table {
-  color: rgb(34, 117, 195);
+  color: rgb(17, 43, 68);
   border-radius: 5px;
   overflow: hidden;
   margin: 20px 0;
@@ -18,11 +20,15 @@ table {
 
 .header-row {
     background: #314b64;
-    color: rgb(204, 231, 236)
+    color: rgb(216, 236, 240);
 }
 
 th, td {
     text-align: left;
     margin: 5px 10px;
     padding: 6px;
+}
+
+tr:nth-child(even){
+    background-color: rgba(116, 170, 152, 0.835);
 }
