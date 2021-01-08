@@ -13,14 +13,15 @@ export class OrbitCountsComponent implements OnInit {
   ngOnInit() {
   }
 
-  spaceDebrisCount(){
+  typeCount(type: string){
     let total = 0;
+    let countType = type.toLowerCase();
     for(let i = 0; i < this.satellites.length; i++) {
       let satellite = this.satellites[i];
-      if(satellite.type.toLowerCase() === 'space debris'){
+      if(satellite.type.toLowerCase() === countType){
         total += 1;
       };
-    return total;
     }
+    return total;
   }
 }
